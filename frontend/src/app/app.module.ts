@@ -13,15 +13,11 @@ import { TranslateModule } from '@ngx-translate/core';
 import { AppComponent } from 'app/app.component';
 import { fuseConfig } from 'app/fuse-config';
 import { LayoutModule } from 'app/layout/layout.module';
+import { AppRoutingModule } from './app-routing.module';
 
+import { AuthenticationModule } from './main/authentication/authentication.module';
 import { ConfigurationModule } from './main/configuration/configuration.module';
 
-const appRoutes: Routes = [
-    {
-        path      : '**',
-        redirectTo: 'configuration'
-    }
-];
 
 @NgModule({
     declarations: [
@@ -31,7 +27,8 @@ const appRoutes: Routes = [
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
-        RouterModule.forRoot(appRoutes, { relativeLinkResolution: 'legacy' }),
+        // RouterModule.forRoot(appRoutes, { relativeLinkResolution: 'legacy' }),
+        AppRoutingModule,
 
         TranslateModule.forRoot(),
 
@@ -51,7 +48,8 @@ const appRoutes: Routes = [
 
         // App modules
         LayoutModule,
-        ConfigurationModule
+        ConfigurationModule,
+        AuthenticationModule
     ],
     bootstrap   : [
         AppComponent
