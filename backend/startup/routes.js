@@ -10,6 +10,7 @@ const getOptionHeader = require('../middleware/header');
 module.exports = function (app) {
     app.use(express.json());
     app.use('/', home);
-    app.use('/api/configuration', auth, getOptionHeader, configurationRoute);
+    app.use('/api/configurations', auth, getOptionHeader, configurationRoute);
+    app.use('/api/orders', auth, getOptionHeader, configurationRoute);
     app.use(error);
 }
