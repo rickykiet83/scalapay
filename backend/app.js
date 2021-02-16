@@ -9,6 +9,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 require('./startup/config')(app);
 require('./startup/routes')(app);
+require('./startup/prod')(app);
 
 process.on('uncaughtException', (ex) => {
     logger.error(ex.message);
