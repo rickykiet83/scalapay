@@ -1,11 +1,13 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
+import { HotToastService } from '@ngneat/hot-toast';
 import { Observable } from 'rxjs/internal/Observable';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { catchError, filter, finalize, map, retry, shareReplay } from 'rxjs/operators';
 
 import { SystemConstants } from '../common/system.constants';
+import { MessageConstants } from './../common/message.constants';
 import { DataServiceBase } from './data.base.service';
 
 @Injectable({
@@ -15,7 +17,8 @@ export abstract class DataService<T> extends DataServiceBase<T> {
 
     constructor(
         http: HttpClient,
-        protected fuseProgressBarService: FuseProgressBarService
+        protected fuseProgressBarService: FuseProgressBarService,
+        protected notificationSvc: HotToastService,
     ) {
         super(http);
     }
@@ -85,30 +88,30 @@ export abstract class DataService<T> extends DataServiceBase<T> {
          // error authentication
         else if (error.status === 0) {
             // this.localStorageSvc.removeItem(StoreConstants.CURRENT_USER);
-            // this.notificationSvc.error(MessageConstants.UNKNOWN_ERROR);
+            this.notificationSvc.error(MessageConstants.UNKNOWN_ERROR);
             // this.routingSvc.toHome();
             // this.store.dispatch(new ActionAuthLogout());
         }
         else if (error.status === 401) {
             // this.localStorageSvc.removeItem(StoreConstants.CURRENT_USER);
-            // this.notificationSvc.error(MessageConstants.FORBIDDEN);
+            this.notificationSvc.error(MessageConstants.FORBIDDEN);
             // this.routingSvc.toHome();
         } else if (error.status === 403) {
             // this.localStorageSvc.removeItem(StoreConstants.CURRENT_USER);
-            // this.notificationSvc.error(MessageConstants.FORBIDDEN);
+            this.notificationSvc.error(MessageConstants.FORBIDDEN);
             // this.routingSvc.toLogin();
             // this.routingSvc.toHome();
         } else if (error.status === 406) {
             // this.localStorageSvc.removeItem(StoreConstants.CURRENT_USER);
-            // this.notificationSvc.error(MessageConstants.INVALID_TOKEN);
+            this.notificationSvc.error(MessageConstants.INVALID_TOKEN);
             // this.routingSvc.toHome();
             // this.store.dispatch(new ActionAuthLogout());
         } else if (error?.error?.responseException) {
             const code = error.error.responseException.code;
             const message = error.error.responseException.message || error.error.responseException.description || error.error.responseException.exceptionMessage;
-            // this.notificationSvc.error(message);
+            this.notificationSvc.error(message);
         } else if (error.status === 400) {
-            // this.notificationSvc.error(error.error.message);
+            this.notificationSvc.error(error.error.message);
         }
 
         else {

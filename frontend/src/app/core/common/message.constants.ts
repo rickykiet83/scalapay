@@ -1,0 +1,30 @@
+export class MessageConstants {
+  public static SYSTEM_ERROR_MSG = 'An error occurred.';
+  public static CONFIRM_DELETE_MSG = 'Are you sure you want to delete?';
+  public static CONFIRM_CANCEL_MSG = 'Are you sure you want to cancel?';
+  public static CONFIRM_RESCHEDULE = 'Please select a new date to reschedule!';
+  public static CONFIRM_UPDATE_SCHCHEDULE = 'Are you sure you want to update!';
+  public static CONFIRM_NEXT_BOOK = 'Please select a next booking date!';
+  public static LOGIN_AGAIN_MSG = 'Your login time is expired. Please login again';
+  public static SAVED_OK_MSG = 'Saved successfully';
+  public static CREATED_OK_MSG = 'Added successfully';
+  public static UPDATED_OK_MSG = 'Updated successfully';
+  public static DELETED_OK_MSG = 'Deleted successfully';
+  public static CANCEL_OK_MSG = 'Cancelled successfully';
+  public static FORBIDDEN = 'Access Denied!';
+  public static WELCOME = 'Welcome back';
+  public static LOGOUT_MSG = 'Logout successfully';
+  public static DUPLICATE_EMAIL = 'Email is already taken';
+  public static REGISTER_SUCCESS = 'Register successfully!';
+  public static REQUIRED_FIELDS = 'Please input all required fields.';
+  public static INVALID_MODEL = 'Invalid model';
+  public static INVALID_TOKEN = 'Invalid token';
+  public static INVALID_USER_OR_TOKEN = 'Invalid user or token';
+  public static EMAIL_VERIFIED = 'Your email is verified successfully!';
+  public static EMAIL_NOT_VERIFIED = 'Your email is not verified yet!';
+  public static PASSWORD_CHANGED_OK = 'Your password was changed successfully!';
+  public static UPLOAD_FILES_SUCCESS = 'Uploaded File(s) successfully!';
+  public static TENANT_REGISTER_SUCCESS = 'Register successfully, please activate your email!';
+  public static ADDED_OK_MSG = 'was added successfully';
+  public static UNKNOWN_ERROR = 'Something wrong, please try again later.';
+}
