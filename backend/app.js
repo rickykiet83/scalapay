@@ -7,6 +7,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
+require('./startup/config')(app);
 require('./startup/routes')(app);
 
 process.on('uncaughtException', (ex) => {
