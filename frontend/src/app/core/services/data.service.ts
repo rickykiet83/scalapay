@@ -69,6 +69,18 @@ export abstract class DataService<T> extends DataServiceBase<T> {
         );
     }
 
+    protected delete(uri: string, id: string | number): Observable<T> {
+        this.fuseProgressBarService.show();
+        const url = `${uri}/${id}`;
+        return this.http.delete(url, this.httpOptions).pipe(
+            filter(response => !!response),
+            map((response: T) => response),
+            retry(SystemConstants.RETRY_TIMES), // retry a failed request up to x times
+            catchError(err => this.handleError(err, this.className())),
+            finalize(() => this.fuseProgressBarService.hide())
+        );
+    }
+
     handleError(error: HttpErrorResponse, functionName = this.className()) {
         // console.error(error);
         // console.log('Error function: ', functionName);

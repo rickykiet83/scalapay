@@ -3,6 +3,7 @@ import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.
 
 import { NotificationService } from '../../../../core/services/notification.service';
 import { BaseComponent } from '../../../../shared/base-component/base-component.component';
+import { ConfigurationService } from '../../services/configuration.service';
 import { locale as english } from './../../i18n/en';
 
 @Component({
@@ -19,11 +20,15 @@ export class ConfigurationComponent extends BaseComponent implements OnInit {
   constructor(
     fuseTranslationLoaderService: FuseTranslationLoaderService,
     notificationService: NotificationService,
+    private configurationService: ConfigurationService,
   ) {
     super(fuseTranslationLoaderService, notificationService);
     this.fuseTranslationLoaderService.loadTranslations(english);
   }
 
   ngOnInit() {
+      this.configurationService.getConfiguration().subscribe(config => {
+          console.log(config);
+      });
   }
 }
