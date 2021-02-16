@@ -5,19 +5,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule, Routes } from '@angular/router';
 import { FuseProgressBarModule, FuseSidebarModule, FuseThemeOptionsModule } from '@fuse/components';
 import { FuseModule } from '@fuse/fuse.module';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { TranslateModule } from '@ngx-translate/core';
-import { AppComponent } from 'app/app.component';
-import { fuseConfig } from 'app/fuse-config';
-import { LayoutModule } from 'app/layout/layout.module';
-import { AppRoutingModule } from './app-routing.module';
 
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { fuseConfig } from './fuse-config';
+import { LayoutModule } from './layout/layout.module';
 import { AuthenticationModule } from './main/authentication/authentication.module';
 import { ConfigurationModule } from './main/configuration/configuration.module';
-
 
 @NgModule({
     declarations: [
@@ -49,7 +47,7 @@ import { ConfigurationModule } from './main/configuration/configuration.module';
         // App modules
         LayoutModule,
         ConfigurationModule,
-        AuthenticationModule
+        AuthenticationModule,
     ],
     bootstrap   : [
         AppComponent
