@@ -25,4 +25,8 @@ export class HttpService {
         });
     }
 
+    get token(): string {
+        return '';
+    }
+
 }
