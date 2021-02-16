@@ -12,7 +12,6 @@ const routes = [
     }
 ];
 
-
 @NgModule({
   declarations: [ConfigurationComponent],
   imports: [

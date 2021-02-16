@@ -82,6 +82,7 @@ $typography: mat-typography-config(
 @import "src/app/layout/components/toolbar/toolbar.theme";
 
 @import "src/app/main/authentication/login/login.theme";
+@import "src/app/main/configuration/components/configuration/configuration.theme";
 
 // Define a mixin for easier access
 @mixin components-theme($theme) {
@@ -92,6 +93,7 @@ $typography: mat-typography-config(
 
     // Main components
     @include login-theme($theme);
+    @include configuration-theme($theme);
 }
 
 // -----------------------------------------------------------------------------------------------------

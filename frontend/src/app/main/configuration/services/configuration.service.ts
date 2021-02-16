@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { DataService } from '../../../core/services/data.service';
-import { Configuration } from '../../../shared/models/configuration.model';
+import { Configuration, ConfigurationModel } from '../../../shared/models/configuration.model';
 import { Observable } from 'rxjs/internal/Observable';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ConfigurationService extends DataService<Configuration> {
+export class ConfigurationService extends DataService<ConfigurationModel> {
     
     private uri = `${this.urlApi}/configuration`;
 
@@ -14,7 +15,9 @@ export class ConfigurationService extends DataService<Configuration> {
         return ConfigurationService.name;
     }
 
-    getConfiguration(): Observable<Configuration> {
-        return super.get(this.uri);
+    getConfiguration(): Observable<ConfigurationModel> {
+        return super.get(this.uri).pipe(
+            map(item => new ConfigurationModel(item))
+        );
     }
 }

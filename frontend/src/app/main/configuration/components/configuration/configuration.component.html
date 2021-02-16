@@ -1,5 +1,87 @@
 <div class="page-layout blank p-24" fusePerfectScrollbar>
 
-    <h2>{{'CONFIGURATION.TITLE' | translate}}</h2>
+    <div id="configuration" fxLayout="row wrap">
+
+        <div class="configuration-content" fxLayout="column" fxFlex="100" fxFlex.gt-sm="50" fxFlex.gt-md="65">
+
+            <div class="configuration-box info-box general" fxLayout="column">
+
+                <header class="accent">
+                    <div class="title">{{'CONFIGURATION.TITLE' | translate}}</div>
+                </header>
+
+                <div class="content">
+                    <!-- Type -->
+                    <div class="info-line">
+                        <div class="title">Type</div>
+                        <div class="info">{{ configuration?.type }}</div>
+                    </div>
+                    <!-- /.Type -->
+                    <div class="info-line">
+                        <div class="title">Description</div>
+                        <div class="info">{{ configuration?.description }}</div>
+                    </div>
+
+                    <!-- Minimum Amount -->
+                    <div class="info-line work">
+                        <div class="title">Minimum Amount</div>
+                        <table class="info jobs">
+                            <tr class="job">
+                                <td class="company">Amount</td>
+                                <td class="date">{{configuration?.minimumAmount?.amount}}</td>
+                            </tr>
+                            <tr class="job">
+                                <td class="company">Currency</td>
+                                <td class="date">{{configuration?.minimumAmount?.currency}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <!-- /.Minimum Amount -->
+
+                    <!-- Maximum Amount -->
+                    <div class="info-line work">
+                        <div class="title">Maximum Amount</div>
+                        <table class="info jobs">
+                            <tr class="job">
+                                <td class="company">Amount</td>
+                                <td class="date">{{configuration?.maximumAmount?.amount}}</td>
+                            </tr>
+                            <tr class="job">
+                                <td class="company">Currency</td>
+                                <td class="date">{{configuration?.maximumAmount?.currency}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <!-- /.Maximum Amount -->
+                    <!-- Number of Payment -->
+                    <div class="info-line">
+                        <div class="title">Number of Payment</div>
+                        <div class="info">{{ configuration?.numberOfPayments }}</div>
+                    </div>
+                    <!-- /.Number of Payment -->
+                    <!-- Promotion Url -->
+                    <div class="info-line">
+                        <div class="title">Promotion Url</div>
+                        <div class="info">
+                            <a [href]="configuration?.promotionUrl" target="_blank">
+                                {{ configuration?.promotionUrl }}</a></div>
+                    </div>
+                    <!-- /.Promotion Url -->
+                    <!-- Locales -->
+
+                    <div class="info-line work">
+                        <div class="title">Locales</div>
+                        <table class="info jobs">
+                            <tr class="job">
+                                <td class="company" *ngFor="let item of configuration?.locales">{{ item }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <!-- /.Locales -->
+                </div>
+            </div>
+        </div>
+
+    </div>
 
 </div>
