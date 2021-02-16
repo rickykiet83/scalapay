@@ -7,7 +7,7 @@ import { ConfigurationComponent } from './components/configuration/configuration
 
 const routes = [
     {
-        path     : 'configuration',
+        path     : 'configurations',
         component: ConfigurationComponent
     }
 ];

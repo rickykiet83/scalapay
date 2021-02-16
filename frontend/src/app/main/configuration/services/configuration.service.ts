@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 })
 export class ConfigurationService extends DataService<ConfigurationModel> {
     
-    private uri = `${this.urlApi}/configuration`;
+    private uri = `${this.urlApi}/configurations`;
 
     className(): string {
         return ConfigurationService.name;
