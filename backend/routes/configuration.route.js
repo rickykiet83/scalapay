@@ -1,10 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const request = require('request');
-const getOptionHeader = require('../middleware/header');
+const config = require('config');
 
-router.get('/', getOptionHeader, (req, res) => {
-    const url = 'https://staging.api.scalapay.com/v1/configurations';
+function getApiUrl() {
+    return `${config.get('scalaApi')}/configurations`;
+}
+
+router.get('/', (req, res) => {
+    const url = getApiUrl();
     request.get(url, req.headers, (err, response, body) => {
         res.status(response.statusCode).send(JSON.parse(body));
     });

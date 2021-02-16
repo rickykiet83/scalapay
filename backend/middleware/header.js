@@ -9,6 +9,8 @@ module.exports = function (req, res, next) {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + token,
     }
-    req.headers = { headers };
+    req.headers = {
+        headers
+    };
     next();
 }
