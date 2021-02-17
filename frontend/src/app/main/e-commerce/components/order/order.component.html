@@ -1,0 +1,171 @@
+<div id="order" class="page-layout carded fullwidth inner-scroll">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header accent"
+             fxLayout="row" fxLayoutAlign="space-between center">
+
+            <!-- APP TITLE -->
+            <div fxLayout="row" fxLayoutAlign="start center">
+
+                <button mat-icon-button class="mr-16" [routerLink]="'/apps/e-commerce/orders'">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+
+                <div fxLayout="column" fxLayoutAlign="start start"
+                     [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                    <div class="h2">
+                        Order {{order?.reference}}
+                    </div>
+                    <div class="subtitle secondary-text">
+                        <span>from</span>
+                        <span>{{order?.customer?.firstName}} {{order?.customer?.lastName}}</span>
+                    </div>
+                </div>
+            </div>
+            <!-- / APP TITLE -->
+
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card">
+
+            <!-- CONTENT -->
+            <div class="content">
+
+                <mat-tab-group fxLayout="column" fxFlex>
+
+                    <mat-tab label="Order Details">
+
+                        <div class="order-details tab-content p-24" fusePerfectScrollbar>
+
+                            <div class="section pb-48">
+
+                                <div class="pb-16" fxLayout="row" fxLayoutAlign="start center">
+                                    <mat-icon class="m-0 mr-16 secondary-text">account_circle</mat-icon>
+                                    <div class="h2 secondary-text">Customer</div>
+                                </div>
+
+                                <div class="customer mb-32">
+                                    <table class="simple">
+                                        <thead>
+                                            <tr>
+                                                <th>Given Name</th>
+                                                <th>Sur Name</th>
+                                                <th>Email</th>
+                                                <th>Phone</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div fxLayout="row" fxLayoutAlign="start center">
+                                                        <span class="name text-truncate">
+                                                            {{order?.customer?.givenName}}
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div fxLayout="row" fxLayoutAlign="start center">
+                                                        <span class="name text-truncate">
+                                                            {{order?.customer?.surName}}
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span class="email text-truncate">{{order?.customer?.email}}</span>
+                                                </td>
+                                                <td>
+                                                    <span class="phone text-truncate">{{order?.customer?.phone}}</span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <mat-accordion class="addresses">
+
+                                    <mat-expansion-panel>
+
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title>Shipping Address</mat-panel-title>
+                                        </mat-expansion-panel-header>
+
+                                        <div fxFlex fxLayout="column">
+                                            <div class="address h4 py-24">{{order?.customer?.shippingAddress?.address}}
+                                            </div>
+                                            
+                                        </div>
+
+                                    </mat-expansion-panel>
+
+                                    <mat-expansion-panel>
+
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title>Invoice Address</mat-panel-title>
+                                        </mat-expansion-panel-header>
+
+                                    </mat-expansion-panel>
+
+                                </mat-accordion>
+
+                            </div>
+
+                        </div>
+                    </mat-tab>
+
+                    <mat-tab label="Products">
+                        <div class="products tab-content p-24" fusePerfectScrollbar>
+                            <table class="simple">
+                                <thead>
+                                    <tr>
+                                        <th class="w-80">ID</th>
+                                        <th class="w-120">Image</th>
+                                        <th>Name</th>
+                                        <th class="w-120">Price</th>
+                                        <th class="w-80">Quantity</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="product-row"
+                                        *ngFor="let product of order?.products"
+                                        [routerLink]="'/apps/e-commerce/products/'+product.id+'/'+product.handle">
+                                        <td>
+                                            {{product.id}}
+                                        </td>
+                                        <td>
+                                            <img class="product-image" [src]="product.image">
+                                        </td>
+                                        <td>
+                                            {{product.name}}
+                                        </td>
+                                        <td>
+                                            {{product.price}}
+                                        </td>
+                                        <td>
+                                            {{product.quantity}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </mat-tab>
+
+                </mat-tab-group>
+
+            </div>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+</div>

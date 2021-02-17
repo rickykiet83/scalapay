@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FuseWidgetModule } from '@fuse/components/widget/widget.module';
 
 import { CoreModule } from '../../core/core.module';
-import { OrdersComponent } from './components/orders/orders.component';
+import { OrderComponent } from './components/order/order.component';
 
 const routes: Routes = [
   {
@@ -12,13 +12,12 @@ const routes: Routes = [
   },
   {
     path: 'orders',
-    component: OrdersComponent
+    component: OrderComponent
   }
 ];
 
 @NgModule({
-  declarations: [OrdersComponent],
-  imports: [RouterModule.forChild(routes), CoreModule,
-    FuseWidgetModule]
+  declarations: [OrderComponent],
+  imports: [RouterModule.forChild(routes), CoreModule, FuseWidgetModule]
 })
 export class ECommerceModule {}
