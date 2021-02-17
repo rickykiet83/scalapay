@@ -53,7 +53,8 @@
                         <div class="order-details tab-content p-24" fusePerfectScrollbar>
 
                             <div class="section pb-48">
-
+                                <pre><code>{{form.getRawValue() | json}}</code></pre>
+                                <!-- CONSUMER -->
                                 <div class="pb-16" fxLayout="row" fxLayoutAlign="start center">
                                     <mat-icon class="m-0 mr-16 secondary-text">account_circle</mat-icon>
                                     <div class="h2 secondary-text">Consumer</div>
@@ -61,36 +62,46 @@
 
                                 <div class="customer mb-32">
                                     <form [formGroup]="form">
-                                        <formly-form [form]="form" [fields]="fields" [model]="order"></formly-form>
+                                        <formly-form [form]="form" [fields]="consumerFields" [model]="order"></formly-form>
                                     </form>
                                 </div>
+                                <!-- /. CONSUMER -->
 
-                                <mat-accordion class="addresses">
+                                <!-- SHIPPING ADDRESS -->
+                                <div class="pb-16" fxLayout="row" fxLayoutAlign="start center">
+                                    <mat-icon class="m-0 mr-16 secondary-text">local_shipping</mat-icon>
+                                    <div class="h2 secondary-text">Shipping Address</div>
+                                </div>
 
-                                    <mat-expansion-panel [expanded]="true">
+                                <div class="customer mb-32">
+                                    <form [formGroup]="form">
+                                        <formly-form [form]="form" [fields]="shippingFields" [model]="order"></formly-form>
+                                    </form>
+                                </div>
+                                <!-- /. SHIPPING ADDRESS -->
 
-                                        <mat-expansion-panel-header>
-                                            <mat-panel-title>Shipping Address</mat-panel-title>
-                                        </mat-expansion-panel-header>
+                                <!-- BILING ADDRESS -->
+                                <div class="pb-16" fxLayout="row" fxLayoutAlign="space-between center">
+                                    <div>
+                                        <mat-icon class="m-0 mr-16 secondary-text">local_shipping</mat-icon>
+                                        <div class="h2 secondary-text">Billing Address</div>
+                                    </div>
+                                    <button mat-raised-button
+                                            type="button"
+                                            mat-secondary
+                                            class="copy-address-button"
+                                            (click)="onCopyAddressFromShippingToBilling()">
+                                        <span>Copy from shipping</span>
+                                    </button>
+                                    
+                                </div>
 
-                                        <div fxFlex fxLayout="column">
-                                            <div class="address h4 py-24">{{order?.consumer?.shippingAddress?.address}}
-                                            </div>
-                                            
-                                        </div>
-
-                                    </mat-expansion-panel>
-
-                                    <mat-expansion-panel>
-
-                                        <mat-expansion-panel-header>
-                                            <mat-panel-title>Invoice Address</mat-panel-title>
-                                        </mat-expansion-panel-header>
-
-                                    </mat-expansion-panel>
-
-                                </mat-accordion>
-
+                                <div class="customer mb-32">
+                                    <form [formGroup]="form">
+                                        <formly-form [form]="form" [fields]="billingFields" [model]="order"></formly-form>
+                                    </form>
+                                </div>
+                                <!-- /. BILING ADDRESS -->
                             </div>
 
                         </div>

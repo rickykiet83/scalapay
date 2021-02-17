@@ -96,7 +96,9 @@ export class OrderComponent extends BaseComponent implements OnInit {
     orderExpiryMilliseconds: 6000000
   });
   form = new FormGroup({});
-  fields: FormlyFieldConfig[] = [];
+  consumerFields: FormlyFieldConfig[] = [];
+  shippingFields: FormlyFieldConfig[] = [];
+  billingFields: FormlyFieldConfig[] = [];
 
   constructor(
     fuseTranslationLoaderService: FuseTranslationLoaderService,
@@ -104,7 +106,9 @@ export class OrderComponent extends BaseComponent implements OnInit {
   ) {
     super(fuseTranslationLoaderService, notifcationService);
     // Set the defaults
-    this.buildFields();
+    this.buildConsumerFields();
+    this.buildShippingFields();
+    this.buildBillingFields();
   }
 
   ngOnInit() {
@@ -113,8 +117,8 @@ export class OrderComponent extends BaseComponent implements OnInit {
     console.log(this.order.toJSON());
   }
 
-  buildFields() {
-    this.fields = [
+  buildConsumerFields() {
+    this.consumerFields = [
       {
         fieldGroupClassName: 'display-flex',
         fieldGroup: [
@@ -168,6 +172,145 @@ export class OrderComponent extends BaseComponent implements OnInit {
         ]
       }
     ];
+  }
+
+  buildShippingFields() {
+    this.shippingFields = [
+      {
+        fieldGroupClassName: 'display-flex',
+        fieldGroup: [
+          {
+            className: 'flex-6',
+            key: 'shipping.name',
+            type: 'input',
+            templateOptions: {
+              label: 'Name (required)',
+              placeholder: 'Name',
+              required: true
+            }
+          },
+          {
+            className: 'flex-6',
+            key: 'shipping.phoneNumber',
+            type: 'input',
+            templateOptions: {
+              type: 'number',
+              label: 'Phone Number (required)',
+              placeholder: 'Phone number',
+              required: true
+            }
+          }
+        ]
+      },
+      {
+        fieldGroupClassName: 'display-flex',
+        fieldGroup: [
+          {
+            className: 'flex-2',
+            type: 'input',
+            key: 'shipping.line1',
+            templateOptions: {
+              label: 'Street (required)',
+              required: true
+            }
+          },
+          {
+            className: 'flex-1',
+            type: 'input',
+            key: 'shipping.suburb',
+            templateOptions: {
+              label: 'Suburb (required)',
+              required: true
+            }
+          },
+          {
+            className: 'flex-1',
+            type: 'input',
+            key: 'shipping.postcode',
+            templateOptions: {
+              type: 'number',
+              label: 'Post Code',
+              max: 99999,
+              min: 0,
+              pattern: '\\d{5}'
+            }
+          }
+        ]
+      }
+    ];
+  }
+  buildBillingFields() {
+    this.billingFields = [
+      {
+        fieldGroupClassName: 'display-flex',
+        fieldGroup: [
+          {
+            className: 'flex-6',
+            key: 'billing.name',
+            type: 'input',
+            templateOptions: {
+              label: 'Name (required)',
+              placeholder: 'Name',
+              required: true
+            }
+          },
+          {
+            className: 'flex-6',
+            key: 'billing.phoneNumber',
+            type: 'input',
+            templateOptions: {
+              type: 'number',
+              label: 'Phone Number (required)',
+              placeholder: 'Phone number',
+              required: true
+            }
+          }
+        ]
+      },
+      {
+        fieldGroupClassName: 'display-flex',
+        fieldGroup: [
+          {
+            className: 'flex-2',
+            type: 'input',
+            key: 'billing.line1',
+            templateOptions: {
+              label: 'Street (required)',
+              required: true
+            }
+          },
+          {
+            className: 'flex-1',
+            type: 'input',
+            key: 'billing.suburb',
+            templateOptions: {
+              label: 'Suburb (required)',
+              required: true
+            }
+          },
+          {
+            className: 'flex-1',
+            type: 'input',
+            key: 'billing.postcode',
+            templateOptions: {
+              type: 'number',
+              label: 'Post Code',
+              max: 99999,
+              min: 0,
+              pattern: '\\d{5}'
+            }
+          }
+        ]
+      }
+    ];
+  }
+
+  onCopyAddressFromShippingToBilling() {
+    this.form.get('billing.name').setValue(this.order.shipping.name);
+    this.form.get('billing.line1').setValue(this.order.shipping.line1);
+    this.form.get('billing.postcode').setValue(this.order.shipping.postcode);
+    this.form.get('billing.suburb').setValue(this.order.shipping.suburb);
+    this.form.get('billing.phoneNumber').setValue(this.order.shipping.phoneNumber);
   }
 
   onSubmit() {
