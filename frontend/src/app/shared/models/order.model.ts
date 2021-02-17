@@ -97,6 +97,11 @@ export class OrderModel extends EntityModel<OrderModel> implements Order {
   shippingAmount: ShippingAmount;
   orderExpiryMilliseconds: number;
 
+  constructor(data?: Order) {
+      super()
+      this.fromJSON(data);
+  }
+
   fromJSON(data?: Order): OrderModel {
     if (!data) return this;
 

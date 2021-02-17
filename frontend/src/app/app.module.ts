@@ -16,6 +16,9 @@ import { fuseConfig } from './fuse-config';
 import { LayoutModule } from './layout/layout.module';
 import { AuthenticationModule } from './main/authentication/authentication.module';
 import { ConfigurationModule } from './main/configuration/configuration.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormlyModule } from '@ngx-formly/core';
+import { FormlyMaterialModule } from '@ngx-formly/material';
 
 @NgModule({
     declarations: [
@@ -48,6 +51,9 @@ import { ConfigurationModule } from './main/configuration/configuration.module';
         LayoutModule,
         ConfigurationModule,
         AuthenticationModule,
+        ReactiveFormsModule,
+        FormlyModule.forRoot({ extras: { lazyRender: true } }),
+        FormlyMaterialModule,
     ],
     bootstrap   : [
         AppComponent

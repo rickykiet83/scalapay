@@ -208,7 +208,8 @@
                                     }
 
                                     // IE10 fix
-                                    .logo, .small-note {
+                                    .logo,
+                                    .small-note {
                                         -ms-flex: 0 1 auto;
                                     }
 

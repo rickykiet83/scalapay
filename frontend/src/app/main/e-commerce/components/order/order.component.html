@@ -31,6 +31,12 @@
             </div>
             <!-- / APP TITLE -->
 
+            <button mat-raised-button
+                    class="save-product-button"
+                    [disabled]="form.invalid || form.pristine" (click)="onSubmit()">
+                <span>SAVE</span>
+            </button>
+
         </div>
         <!-- / HEADER -->
 
@@ -54,12 +60,14 @@
                                 </div>
 
                                 <div class="customer mb-32">
-                                   
+                                    <form [formGroup]="form">
+                                        <formly-form [form]="form" [fields]="fields" [model]="order"></formly-form>
+                                    </form>
                                 </div>
 
                                 <mat-accordion class="addresses">
 
-                                    <mat-expansion-panel>
+                                    <mat-expansion-panel [expanded]="true">
 
                                         <mat-expansion-panel-header>
                                             <mat-panel-title>Shipping Address</mat-panel-title>
