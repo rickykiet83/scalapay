@@ -11,7 +11,9 @@ router.post('/', (req, res) => {
     const { error } = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
-    res.status(201).send('Success');
+    
+
+    res.status(201).json('Success');
 });
 
 
