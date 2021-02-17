@@ -18,7 +18,7 @@ import { OrderModel } from '../../../../shared/models/order.model';
 export class OrderComponent extends BaseComponent implements OnInit {
   order: OrderModel = new OrderModel({
     totalAmount: {
-      amount: '40.70',
+      amount: 40.70,
       currency: 'EUR'
     },
     consumer: {
@@ -53,9 +53,10 @@ export class OrderComponent extends BaseComponent implements OnInit {
         sku: '12341234',
         quantity: 1,
         price: {
-          amount: '10.00',
+          amount: 10.00,
           currency: 'EUR'
-        }
+        },
+        total: 10
       },
       {
         name: 'Jeans',
@@ -66,16 +67,17 @@ export class OrderComponent extends BaseComponent implements OnInit {
         sku: '12341235',
         quantity: 1,
         price: {
-          amount: '20.00',
+          amount: 20.00,
           currency: 'EUR'
-        }
+        },
+        total: 20
       }
     ],
     discounts: [
       {
         displayName: '10% Off',
         amount: {
-          amount: '3.00',
+          amount: 3.00,
           currency: 'EUR'
         }
       }
@@ -86,7 +88,7 @@ export class OrderComponent extends BaseComponent implements OnInit {
     },
     merchantReference: 'merchantOrder-1234',
     taxAmount: {
-      amount: '3.70',
+      amount: 3.70,
       currency: 'EUR'
     },
     shippingAmount: {
@@ -345,7 +347,9 @@ export class OrderComponent extends BaseComponent implements OnInit {
   }
 
   get disabledSave(): boolean {
-      return this.form.invalid || this.form.pristine;
+      return this.form.invalid 
+    //   || this.form.pristine
+      ;
   }
 
   onSubmit() {

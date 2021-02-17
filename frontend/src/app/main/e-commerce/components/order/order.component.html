@@ -34,7 +34,7 @@
             <button mat-raised-button
                     class="save-product-button"
                     [disabled]="disabledSave" (click)="onSubmit()">
-                <span>SAVE</span>
+                <span>CHECKOUT</span>
             </button>
 
         </div>
@@ -53,7 +53,7 @@
                         <div class="order-details tab-content p-24" fusePerfectScrollbar>
 
                             <div class="section pb-48">
-                                <pre><code>{{form.getRawValue() | json}}</code></pre>
+                                <!-- <pre><code>{{form.getRawValue() | json}}</code></pre> -->
                                 <!-- CONSUMER -->
                                 <div class="pb-16" fxLayout="row" fxLayoutAlign="start center">
                                     <mat-icon class="m-0 mr-16 secondary-text">account_circle</mat-icon>
@@ -124,14 +124,13 @@
                                         <th>Name</th>
                                         <th class="w-120">Category</th>
                                         <th class="w-120">Brand</th>
-                                        <th class="w-80">Gtin</th>
+                                        <th class="w-80">Price</th>
                                         <th class="w-80">Quantity</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr class="product-row"
-                                        *ngFor="let product of order?.items"
-                                        [routerLink]="'/apps/e-commerce/products/'+product.id+'/'+product.handle">
+                                        *ngFor="let product of order?.items">
                                         <td>
                                             {{product.name}}
                                         </td>
@@ -142,7 +141,7 @@
                                             {{product.brand}}
                                         </td>
                                         <td>
-                                            {{product.gtin}}
+                                            {{product.price.amount}}
                                         </td>
                                         <td>
                                             {{product.quantity}}
@@ -150,6 +149,137 @@
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
+                    </mat-tab>
+
+                    <mat-tab label="Invoice">
+
+                        <div class="invoice tab-content p-24" fusePerfectScrollbar>
+
+                            <div id="invoice" class="compact page-layout blank" fxLayout="row" fusePerfectScrollbar>
+
+                                <div class="invoice-container">
+
+                                    <!-- INVOICE -->
+                                    <div class="card">
+
+                                        <div class="header">
+                                            <div class="invoice-date">{{order?.date}}</div>
+
+                                            <div fxLayout="row" fxLayoutAlign="space-between stretch">
+                                                <div class="client">
+                                                    <div class="invoice-number" fxLayout="row"
+                                                         fxLayoutAlign="start center">
+                                                        <span class="title">INVOICE</span>
+                                                        <span class="number">{{order.merchantReference}}</span>
+                                                    </div>
+
+                                                    <div class="info">
+                                                        <div class="title">
+                                                            {{order.consumer.givenNames}}
+                                                            {{order.consumer.surname}}
+                                                        </div>
+                                                        <div class="address">
+                                                            {{order.billingAddress}}
+                                                        </div>
+                                                        <div class="phone">{{order.consumer.phoneNumber}}</div>
+                                                        <div class="email">{{order.consumer.email}}</div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="issuer accent" fxLayout="row" fxLayoutAlign="start center">
+                                                    <div class="logo">
+                                                        <img src="assets/images/logos/scalapay-logo.svg">
+                                                    </div>
+
+                                                    <div class="info">
+                                                        <div class="title">SCALAPAY LIMITED.</div>
+                                                        <div class="address">7 D’Olier Street, Dublin 2 D02 HF60, Ireland
+                                                        </div>
+                                                        <div class="phone">+012 3456 789</div>
+                                                        <div class="email">johnny@scalapay.com</div>
+                                                        <div class="website">www.scalapay.com</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="content">
+
+                                            <table class="simple invoice-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>PRODUCT</th>
+                                                        <th class="text-right">PRICE</th>
+                                                        <th class="text-right">QUANTITY</th>
+                                                        <th class="text-right">TOTAL</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let product of order?.items">
+                                                        <td>
+                                                            <div class="title">
+                                                                {{product.name}}
+                                                            </div>
+                                                        </td>
+                                                        <td class="text-right">
+                                                            {{product.price.amount }} | {{ product.price.currency }}
+                                                        </td>
+                                                        <td class="text-right">
+                                                            {{product.quantity}}
+                                                        </td>
+                                                        <td class="text-right">
+                                                            {{product.total}} | {{ product.price.currency }}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                            <table class="simple invoice-table-footer">
+                                                <tbody>
+                                                    <tr class="subtotal">
+                                                        <td>SUBTOTAL</td>
+                                                        <td>{{order.subtotal.amount}} | {{ order.subtotal.currency }}</td>
+                                                    </tr>
+                                                    <tr class="tax">
+                                                        <td>TAX</td>
+                                                        <td>{{order.taxAmount.amount}} | {{order.taxAmount.currency}}</td>
+                                                    </tr>
+                                                    <tr class="discount">
+                                                        <td>DISCOUNT</td>
+                                                        <td>-{{order.discounts[0].amount.amount }} | {{order.discounts[0].amount.currency}}</td>
+                                                    </tr>
+                                                    <tr class="total">
+                                                        <td>TOTAL</td>
+                                                        <td>{{order.totalAmount.amount}} | {{order.totalAmount.currency}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <div class="footer">
+                                            <div class="note">Please pay within 15 days. Thank you for your business.
+                                            </div>
+                                            <div fxLayout="row" fxLayoutAlign="start start">
+                                                <div class="logo">
+                                                    <img src="assets/images/logos/scalapay-logo.svg">
+                                                </div>
+                                                <div class="small-note">
+                                                    In condimentum malesuada efficitur. Mauris volutpat placerat auctor.
+                                                    Ut ac congue dolor. Quisque scelerisque lacus sed feugiat fermentum.
+                                                    Cras aliquet facilisis pellentesque. Nunc hendrerit quam at leo
+                                                    commodo, a suscipit tellus dapibus. Etiam at felis volutpat est
+                                                    mollis lacinia. Mauris placerat sem sit amet velit mollis, in
+                                                    porttitor ex finibus. Proin eu nibh id libero tincidunt lacinia et
+                                                    eget eros.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- / INVOICE -->
+
+                                </div>
+                            </div>
                         </div>
                     </mat-tab>
 

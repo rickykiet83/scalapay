@@ -1,8 +1,4 @@
 import { EntityModel } from './entity.model';
-export interface TotalAmount {
-  amount: string;
-  currency: string;
-}
 
 export interface Consumer {
   phoneNumber: string;
@@ -29,11 +25,6 @@ export interface Shipping {
   phoneNumber: string;
 }
 
-export interface Price {
-  amount: string;
-  currency: string;
-}
-
 export interface Item {
   name: string;
   category: string;
@@ -42,11 +33,12 @@ export interface Item {
   gtin: string;
   sku: string;
   quantity: number;
-  price: Price;
+  price: Amount;
+  total: number;
 }
 
 export interface Amount {
-  amount: string;
+  amount: number;
   currency: string;
 }
 
@@ -60,10 +52,7 @@ export interface Merchant {
   redirectCancelUrl: string;
 }
 
-export interface TaxAmount {
-  amount: string;
-  currency: string;
-}
+export interface TaxAmount extends Amount {}
 
 export interface ShippingAmount {
   amount: string;
@@ -71,7 +60,8 @@ export interface ShippingAmount {
 }
 
 export interface Order {
-  totalAmount: TotalAmount;
+  subtotal?: Amount;
+  totalAmount: Amount;
   consumer: Consumer;
   billing: Billing;
   shipping: Shipping;
@@ -85,7 +75,8 @@ export interface Order {
 }
 
 export class OrderModel extends EntityModel<OrderModel> implements Order {
-  totalAmount: TotalAmount;
+  date: string = new Date().toLocaleDateString();  
+  totalAmount: Amount;
   consumer: Consumer;
   billing: Billing;
   shipping: Shipping;
@@ -96,15 +87,17 @@ export class OrderModel extends EntityModel<OrderModel> implements Order {
   taxAmount: TaxAmount;
   shippingAmount: ShippingAmount;
   orderExpiryMilliseconds: number;
+  private _subtotal: Amount;
 
   constructor(data?: Order) {
-      super()
-      this.fromJSON(data);
+    super();
+    this.fromJSON(data);
   }
 
   fromJSON(data?: Order): OrderModel {
     if (!data) return this;
 
+    this._subtotal = data.subtotal;
     this.totalAmount = data.totalAmount;
     this.consumer = data.consumer;
     this.billing = data.billing;
@@ -118,6 +111,18 @@ export class OrderModel extends EntityModel<OrderModel> implements Order {
     this.orderExpiryMilliseconds = data.orderExpiryMilliseconds || 6000000;
 
     return this;
+  }
+
+  get subtotal(): Amount {
+      const _amount = this.items.reduce((amount, item) => amount + (item.quantity * item.price.amount), 0);
+      return {
+          amount: _amount,
+          currency: 'EUR'
+      }
+  }
+
+  get billingAddress(): string {
+      return `${this.billing.line1}, ${this.billing.suburb}, ${this.billing.postcode}, ${this.billing.countryCode}`;
   }
 
   toJSON(): Partial<Order> {
