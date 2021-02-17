@@ -1,4 +1,4 @@
 {
-    "scalaApi" : "https://staging.api.scalapay.com/v1",
+    "scalaApi" : "https://staging.api.scalapay.com/v2",
     "token": "scala_token"
 }

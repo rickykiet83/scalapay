@@ -8,7 +8,7 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'configuration'
+    redirectTo: 'configurations'
   }
 ];
 
