@@ -21,11 +21,11 @@
                 <div fxLayout="column" fxLayoutAlign="start start"
                      [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
                     <div class="h2">
-                        Order {{order?.reference}}
+                        Order
                     </div>
                     <div class="subtitle secondary-text">
                         <span>from</span>
-                        <span>{{order?.customer?.firstName}} {{order?.customer?.lastName}}</span>
+                        <span>{{order?.consumer?.givenNames}} {{order?.consumer?.surName}}</span>
                     </div>
                 </div>
             </div>
@@ -50,44 +50,11 @@
 
                                 <div class="pb-16" fxLayout="row" fxLayoutAlign="start center">
                                     <mat-icon class="m-0 mr-16 secondary-text">account_circle</mat-icon>
-                                    <div class="h2 secondary-text">Customer</div>
+                                    <div class="h2 secondary-text">Consumer</div>
                                 </div>
 
                                 <div class="customer mb-32">
-                                    <table class="simple">
-                                        <thead>
-                                            <tr>
-                                                <th>Given Name</th>
-                                                <th>Sur Name</th>
-                                                <th>Email</th>
-                                                <th>Phone</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <div fxLayout="row" fxLayoutAlign="start center">
-                                                        <span class="name text-truncate">
-                                                            {{order?.customer?.givenName}}
-                                                        </span>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div fxLayout="row" fxLayoutAlign="start center">
-                                                        <span class="name text-truncate">
-                                                            {{order?.customer?.surName}}
-                                                        </span>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <span class="email text-truncate">{{order?.customer?.email}}</span>
-                                                </td>
-                                                <td>
-                                                    <span class="phone text-truncate">{{order?.customer?.phone}}</span>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                   
                                 </div>
 
                                 <mat-accordion class="addresses">
@@ -99,7 +66,7 @@
                                         </mat-expansion-panel-header>
 
                                         <div fxFlex fxLayout="column">
-                                            <div class="address h4 py-24">{{order?.customer?.shippingAddress?.address}}
+                                            <div class="address h4 py-24">{{order?.consumer?.shippingAddress?.address}}
                                             </div>
                                             
                                         </div>
@@ -126,28 +93,28 @@
                             <table class="simple">
                                 <thead>
                                     <tr>
-                                        <th class="w-80">ID</th>
-                                        <th class="w-120">Image</th>
                                         <th>Name</th>
-                                        <th class="w-120">Price</th>
+                                        <th class="w-120">Category</th>
+                                        <th class="w-120">Brand</th>
+                                        <th class="w-80">Gtin</th>
                                         <th class="w-80">Quantity</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr class="product-row"
-                                        *ngFor="let product of order?.products"
+                                        *ngFor="let product of order?.items"
                                         [routerLink]="'/apps/e-commerce/products/'+product.id+'/'+product.handle">
-                                        <td>
-                                            {{product.id}}
-                                        </td>
-                                        <td>
-                                            <img class="product-image" [src]="product.image">
-                                        </td>
                                         <td>
                                             {{product.name}}
                                         </td>
                                         <td>
-                                            {{product.price}}
+                                            {{product.category}}
+                                        </td>
+                                        <td>
+                                            {{product.brand}}
+                                        </td>
+                                        <td>
+                                            {{product.gtin}}
                                         </td>
                                         <td>
                                             {{product.quantity}}
