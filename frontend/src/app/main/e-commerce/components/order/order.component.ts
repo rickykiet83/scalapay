@@ -332,6 +332,20 @@ export class OrderComponent extends BaseComponent implements OnInit {
     this.form.get('billing.postcode').setValue(this.order.shipping.postcode);
     this.form.get('billing.suburb').setValue(this.order.shipping.suburb);
     this.form.get('billing.phoneNumber').setValue(this.order.shipping.phoneNumber);
+    this.form.get('billing.countryCode').setValue(this.order.shipping.countryCode);
+  }
+
+  onCopyAddressFromBillingToShipping() {
+    this.form.get('shipping.name').setValue(this.order.billing.name);
+    this.form.get('shipping.line1').setValue(this.order.billing.line1);
+    this.form.get('shipping.postcode').setValue(this.order.billing.postcode);
+    this.form.get('shipping.suburb').setValue(this.order.billing.suburb);
+    this.form.get('shipping.phoneNumber').setValue(this.order.billing.phoneNumber);
+    this.form.get('shipping.countryCode').setValue(this.order.billing.countryCode);
+  }
+
+  get disabledSave(): boolean {
+      return this.form.invalid || this.form.pristine;
   }
 
   onSubmit() {

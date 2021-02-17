@@ -33,7 +33,7 @@
 
             <button mat-raised-button
                     class="save-product-button"
-                    [disabled]="form.invalid || form.pristine" (click)="onSubmit()">
+                    [disabled]="disabledSave" (click)="onSubmit()">
                 <span>SAVE</span>
             </button>
 
@@ -68,9 +68,18 @@
                                 <!-- /. CONSUMER -->
 
                                 <!-- SHIPPING ADDRESS -->
-                                <div class="pb-16" fxLayout="row" fxLayoutAlign="start center">
-                                    <mat-icon class="m-0 mr-16 secondary-text">local_shipping</mat-icon>
-                                    <div class="h2 secondary-text">Shipping Address</div>
+                                <div class="pb-16" fxLayout="row" fxLayoutAlign="space-between center">
+                                    <div>
+                                        <mat-icon class="m-0 mr-16 secondary-text">local_shipping</mat-icon>
+                                        <div class="h2 secondary-text">Shipping Address</div>
+                                    </div>
+                                    <button mat-raised-button
+                                            type="button"
+                                            mat-secondary
+                                            class="copy-address-button"
+                                            (click)="onCopyAddressFromBillingToShipping()">
+                                        <span>Copy from billing</span>
+                                    </button>
                                 </div>
 
                                 <div class="customer mb-32">
