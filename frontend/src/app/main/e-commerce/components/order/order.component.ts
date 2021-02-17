@@ -130,12 +130,39 @@ export class OrderComponent extends BaseComponent implements OnInit {
           },
           {
             className: 'flex-3',
-            key: 'consumer.surName',
+            key: 'consumer.surname',
             type: 'input',
             templateOptions: {
               label: 'Sur Name (required)',
               placeholder: 'Sur Name',
               required: true
+            }
+          }
+        ]
+      },
+      {
+        fieldGroupClassName: 'display-flex',
+        fieldGroup: [
+          {
+            className: 'flex-1',
+            key: 'consumer.email',
+            type: 'input',
+            templateOptions: {
+              type: 'email',
+              pattern: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+              label: 'Given Name (required)',
+              placeholder: 'Given Name',
+              required: true
+            }
+          },
+          {
+            className: 'flex-1',
+            key: 'consumer.phoneNumber',
+            type: 'input',
+            templateOptions: {
+              label: 'Phone Number',
+              placeholder: 'Phone Number',
+              required: false
             }
           }
         ]
