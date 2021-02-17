@@ -8,8 +8,7 @@ function getApiUrl() {
 }
 
 router.get('/', (req, res) => {
-    const url = getApiUrl();
-    request.get(url, req.headers, (err, response, body) => {
+    request.get(getApiUrl(), req.headers, (err, response, body) => {
         res.status(response.statusCode).send(JSON.parse(body));
     });
 });
