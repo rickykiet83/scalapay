@@ -234,7 +234,17 @@ export class OrderComponent extends BaseComponent implements OnInit {
               min: 0,
               pattern: '\\d{5}'
             }
-          }
+          },
+          {
+            className: 'flex-1',
+            type: 'input',
+            key: 'shipping.countryCode',
+            templateOptions: {
+              label: 'Country Code (required)',
+              required: true,
+              maxLength: 2
+            }
+          },
         ]
       }
     ];
@@ -276,7 +286,8 @@ export class OrderComponent extends BaseComponent implements OnInit {
             key: 'billing.line1',
             templateOptions: {
               label: 'Street (required)',
-              required: true
+              required: true,
+              maxLength: 250,
             }
           },
           {
@@ -299,7 +310,17 @@ export class OrderComponent extends BaseComponent implements OnInit {
               min: 0,
               pattern: '\\d{5}'
             }
-          }
+          },
+          {
+            className: 'flex-1',
+            type: 'input',
+            key: 'billing.countryCode',
+            templateOptions: {
+              label: 'Country Code (required)',
+              required: true,
+              maxLength: 2
+            }
+          },
         ]
       }
     ];
