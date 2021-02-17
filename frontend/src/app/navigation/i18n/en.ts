@@ -6,7 +6,8 @@ export const locale = {
       CONFIGURATION: {
         TITLE: 'Configuration',
         BADGE: '25'
-      }
+      },
+      ECOMMERCE: 'E-Commerce'
     }
   }
 };
