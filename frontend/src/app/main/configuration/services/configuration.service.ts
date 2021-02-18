@@ -8,15 +8,16 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ConfigurationService extends DataService<ConfigurationModel> {
+    getApiUrl(): string {
+        return `${this.urlApi}/configurations`;
+    }
     
-    private uri = `${this.urlApi}/configurations`;
-
     className(): string {
         return ConfigurationService.name;
     }
 
     getConfiguration(): Observable<ConfigurationModel> {
-        return super.get(this.uri).pipe(
+        return super.get(this.getApiUrl()).pipe(
             map(item => new ConfigurationModel(item))
         );
     }

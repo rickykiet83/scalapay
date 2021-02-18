@@ -3,10 +3,12 @@ import { FormGroup } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.service';
 import { FormlyFieldConfig } from '@ngx-formly/core';
+import { RoutingServiceBase } from './../../../../core/services/routing.base.service';
 
 import { NotificationService } from '../../../../core/services/notification.service';
 import { BaseComponent } from '../../../../shared/base-component/base-component.component';
 import { OrderModel } from '../../../../shared/models/order.model';
+import { OrderService } from '../../services/order.service';
 
 @Component({
   selector: 'order',
@@ -56,7 +58,6 @@ export class OrderComponent extends BaseComponent implements OnInit {
           amount: '10.00',
           currency: 'EUR'
         },
-        total: 10
       },
       {
         name: 'Jeans',
@@ -70,7 +71,6 @@ export class OrderComponent extends BaseComponent implements OnInit {
           amount: '20.00',
           currency: 'EUR'
         },
-        total: 20
       }
     ],
     discounts: [
@@ -104,7 +104,9 @@ export class OrderComponent extends BaseComponent implements OnInit {
 
   constructor(
     fuseTranslationLoaderService: FuseTranslationLoaderService,
-    notifcationService: NotificationService
+    notifcationService: NotificationService,
+    private orderService: OrderService,
+    private routingService: RoutingServiceBase,
   ) {
     super(fuseTranslationLoaderService, notifcationService);
     // Set the defaults
@@ -337,12 +339,15 @@ export class OrderComponent extends BaseComponent implements OnInit {
 
   get disabledSave(): boolean {
       return this.form.invalid 
-    //   || this.form.pristine
+      || this.form.pristine
       ;
   }
 
   onSubmit() {
-    console.log(this.order);
-    console.log(this.order.toJSON());
+      this.orderService.createOrder(this.order).subscribe(response => {
+          if (response.checkoutUrl) {
+            this.routingService.toExternalUrl(response.checkoutUrl);
+          }
+      })
   }
 }

@@ -6,6 +6,7 @@ import { FuseWidgetModule } from '@fuse/components/widget/widget.module';
 import { CoreModule } from '../../core/core.module';
 import { OrderComponent } from './components/order/order.component';
 import { FormlyMaterialModule } from '@ngx-formly/material';
+import { OrderService } from './services/order.service';
 const routes: Routes = [
   {
     path: '',
@@ -20,9 +21,12 @@ const routes: Routes = [
 @NgModule({
   declarations: [OrderComponent],
   imports: [
-      RouterModule.forChild(routes), CoreModule, FuseWidgetModule,
-      FormlyModule.forRoot(),
-      FormlyMaterialModule
-    ]
+    RouterModule.forChild(routes),
+    CoreModule,
+    FuseWidgetModule,
+    FormlyModule.forRoot(),
+    FormlyMaterialModule
+  ],
+  providers: [OrderService]
 })
 export class ECommerceModule {}

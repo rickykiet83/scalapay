@@ -34,7 +34,6 @@ export interface Item {
   sku: string;
   quantity: number;
   price: Amount;
-  total: number;
 }
 
 export interface Amount {

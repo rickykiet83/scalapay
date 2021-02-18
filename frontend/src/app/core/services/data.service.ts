@@ -24,6 +24,7 @@ export abstract class DataService<T> extends DataServiceBase<T> {
     }
 
     abstract className(): string;
+    abstract getApiUrl(): string;
 
     protected getAll(uri: string): Observable<T[]> {
         return this.http.get<T[]>(uri, this.httpOptions).pipe(
