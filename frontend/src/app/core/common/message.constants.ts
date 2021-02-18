@@ -1,4 +1,5 @@
 export class MessageConstants {
+  public static LOGIN_FAILED = 'WRONG EMAIL OR PASSWORD';
   public static SYSTEM_ERROR_MSG = 'An error occurred.';
   public static CONFIRM_DELETE_MSG = 'Are you sure you want to delete?';
   public static CONFIRM_CANCEL_MSG = 'Are you sure you want to cancel?';

@@ -1,3 +1,5 @@
+import { MessageConstants } from './../../../core/common/message.constants';
+import { NotificationService } from './../../../core/services/notification.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -24,6 +26,7 @@ export class LoginComponent implements OnInit {
         private _fuseConfigService: FuseConfigService,
         private _formBuilder: FormBuilder,
         private route: Router,
+        private notificationService: NotificationService,
     )
     {
         // Configure the layout
@@ -64,5 +67,8 @@ export class LoginComponent implements OnInit {
         if (this.loginForm.get('email').value === 'test@scalapay.it' &&
             this.loginForm.get('password').value === '12345678')
             this.route.navigateByUrl('/');
+        else {
+            this.notificationService.error(MessageConstants.LOGIN_FAILED);
+        }
     } 
 }
