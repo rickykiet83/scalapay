@@ -18,7 +18,7 @@ import { OrderModel } from '../../../../shared/models/order.model';
 export class OrderComponent extends BaseComponent implements OnInit {
   order: OrderModel = new OrderModel({
     totalAmount: {
-      amount: 40.70,
+      amount: '40.70',
       currency: 'EUR'
     },
     consumer: {
@@ -53,7 +53,7 @@ export class OrderComponent extends BaseComponent implements OnInit {
         sku: '12341234',
         quantity: 1,
         price: {
-          amount: 10.00,
+          amount: '10.00',
           currency: 'EUR'
         },
         total: 10
@@ -67,7 +67,7 @@ export class OrderComponent extends BaseComponent implements OnInit {
         sku: '12341235',
         quantity: 1,
         price: {
-          amount: 20.00,
+          amount: '20.00',
           currency: 'EUR'
         },
         total: 20
@@ -77,7 +77,7 @@ export class OrderComponent extends BaseComponent implements OnInit {
       {
         displayName: '10% Off',
         amount: {
-          amount: 3.00,
+          amount: '3.00',
           currency: 'EUR'
         }
       }
@@ -88,7 +88,7 @@ export class OrderComponent extends BaseComponent implements OnInit {
     },
     merchantReference: 'merchantOrder-1234',
     taxAmount: {
-      amount: 3.70,
+      amount: '3.70',
       currency: 'EUR'
     },
     shippingAmount: {
@@ -115,8 +115,6 @@ export class OrderComponent extends BaseComponent implements OnInit {
 
   ngOnInit() {
     super.ngOnInit();
-    console.log(this.order.totalAmount);
-    console.log(this.order.toJSON());
   }
 
   buildConsumerFields() {
@@ -328,22 +326,13 @@ export class OrderComponent extends BaseComponent implements OnInit {
     ];
   }
 
-  onCopyAddressFromShippingToBilling() {
-    this.form.get('billing.name').setValue(this.order.shipping.name);
-    this.form.get('billing.line1').setValue(this.order.shipping.line1);
-    this.form.get('billing.postcode').setValue(this.order.shipping.postcode);
-    this.form.get('billing.suburb').setValue(this.order.shipping.suburb);
-    this.form.get('billing.phoneNumber').setValue(this.order.shipping.phoneNumber);
-    this.form.get('billing.countryCode').setValue(this.order.shipping.countryCode);
-  }
-
-  onCopyAddressFromBillingToShipping() {
-    this.form.get('shipping.name').setValue(this.order.billing.name);
-    this.form.get('shipping.line1').setValue(this.order.billing.line1);
-    this.form.get('shipping.postcode').setValue(this.order.billing.postcode);
-    this.form.get('shipping.suburb').setValue(this.order.billing.suburb);
-    this.form.get('shipping.phoneNumber').setValue(this.order.billing.phoneNumber);
-    this.form.get('shipping.countryCode').setValue(this.order.billing.countryCode);
+  onCopyAddressFrom(fromKey: string = 'billing', toKey: string = 'shipping') {
+    this.form.get(`${toKey}.name`).setValue(this.form.get(`${fromKey}.name`).value);
+    this.form.get(`${toKey}.line1`).setValue(this.form.get(`${fromKey}.line1`).value);
+    this.form.get(`${toKey}.postcode`).setValue(this.form.get(`${fromKey}.postcode`).value);
+    this.form.get(`${toKey}.suburb`).setValue(this.form.get(`${fromKey}.suburb`).value);
+    this.form.get(`${toKey}.phoneNumber`).setValue(this.form.get(`${fromKey}.phoneNumber`).value);
+    this.form.get(`${toKey}.countryCode`).setValue(this.form.get(`${fromKey}.countryCode`).value);
   }
 
   get disabledSave(): boolean {

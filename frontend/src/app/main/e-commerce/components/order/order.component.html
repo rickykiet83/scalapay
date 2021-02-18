@@ -77,7 +77,7 @@
                                             type="button"
                                             mat-secondary
                                             class="copy-address-button"
-                                            (click)="onCopyAddressFromBillingToShipping()">
+                                            (click)="onCopyAddressFrom('billing', 'shipping')">
                                         <span>Copy from billing</span>
                                     </button>
                                 </div>
@@ -99,7 +99,7 @@
                                             type="button"
                                             mat-secondary
                                             class="copy-address-button"
-                                            (click)="onCopyAddressFromShippingToBilling()">
+                                            (click)="onCopyAddressFrom('shipping', 'billing')">
                                         <span>Copy from shipping</span>
                                     </button>
                                     
@@ -223,13 +223,13 @@
                                                             </div>
                                                         </td>
                                                         <td class="text-right">
-                                                            {{product.price.amount }} | {{ product.price.currency }}
+                                                            ${{product.price.amount }}
                                                         </td>
                                                         <td class="text-right">
                                                             {{product.quantity}}
                                                         </td>
                                                         <td class="text-right">
-                                                            {{product.total}} | {{ product.price.currency }}
+                                                            ${{product.total}}
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -239,19 +239,19 @@
                                                 <tbody>
                                                     <tr class="subtotal">
                                                         <td>SUBTOTAL</td>
-                                                        <td>{{order.subtotal.amount}} | {{ order.subtotal.currency }}</td>
+                                                        <td>${{order.subtotal.amount}}</td>
                                                     </tr>
                                                     <tr class="tax">
                                                         <td>TAX</td>
-                                                        <td>{{order.taxAmount.amount}} | {{order.taxAmount.currency}}</td>
+                                                        <td>${{order.taxAmount.amount}}</td>
                                                     </tr>
                                                     <tr class="discount">
                                                         <td>DISCOUNT</td>
-                                                        <td>-{{order.discounts[0].amount.amount }} | {{order.discounts[0].amount.currency}}</td>
+                                                        <td>-${{order.discounts[0].amount.amount }}</td>
                                                     </tr>
                                                     <tr class="total">
                                                         <td>TOTAL</td>
-                                                        <td>{{order.totalAmount.amount}} | {{order.totalAmount.currency}}</td>
+                                                        <td>${{order.totalAmount.amount}}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>

@@ -38,7 +38,7 @@ export interface Item {
 }
 
 export interface Amount {
-  amount: number;
+  amount: string;
   currency: string;
 }
 
@@ -54,10 +54,7 @@ export interface Merchant {
 
 export interface TaxAmount extends Amount {}
 
-export interface ShippingAmount {
-  amount: string;
-  currency: string;
-}
+export interface ShippingAmount extends Amount {}
 
 export interface Order {
   subtotal?: Amount;
@@ -114,9 +111,9 @@ export class OrderModel extends EntityModel<OrderModel> implements Order {
   }
 
   get subtotal(): Amount {
-      const _amount = this.items.reduce((amount, item) => amount + (item.quantity * item.price.amount), 0);
+      const _amount = this.items.reduce((amount, item) => amount + (item.quantity * +item.price.amount), 0);
       return {
-          amount: _amount,
+          amount: _amount.toString(),
           currency: 'EUR'
       }
   }
