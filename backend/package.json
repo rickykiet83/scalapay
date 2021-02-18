@@ -1,5 +1,5 @@
 {
-  "name": "backend_scalapay",
+  "name": "scalapay-backend",
   "version": "1.0.0",
   "description": "Scalapay Backend API",
   "main": "server.js",

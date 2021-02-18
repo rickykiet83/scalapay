@@ -1,4 +1,5 @@
 export const environment = {
     production: true,
-    hmr       : false
+    hmr       : false,
+    baseAPI: 'https://kiet-scalapay.herokuapp.com/api',
 };

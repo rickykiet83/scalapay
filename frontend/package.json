@@ -1,5 +1,5 @@
 {
-  "name": "scalapay",
+  "name": "scalapay-frontend",
   "version": "1.0.0",
   "license": "",
   "scripts": {
@@ -15,6 +15,10 @@
     "bundle-report": "webpack-bundle-analyzer dist/stats.json"
   },
   "private": true,
+  "engines": {
+    "node": "14.15.5",
+    "npm": "6.14.11"
+  },
   "dependencies": {
     "@agm/core": "1.1.0",
     "@angular/animations": "11.0.0",
@@ -33,6 +37,8 @@
     "@ngrx/router-store": "8.6.0",
     "@ngrx/store": "8.6.0",
     "@ngrx/store-devtools": "8.6.0",
+    "@ngx-formly/core": "^5.0.0",
+    "@ngx-formly/material": "^5.0.0",
     "@ngx-formly/schematics": "5.10.14",
     "@ngx-translate/core": "13.0.0",
     "@swimlane/dragula": "3.8.0",
@@ -46,20 +52,20 @@
     "classlist.js": "1.1.20150312",
     "d3": "5.16.0",
     "date-fns": "2.16.1",
+    "express": "4.17.1",
     "lodash": "4.17.20",
     "moment": "2.29.1",
     "ng2-charts": "2.4.2",
     "ngrx-store-freeze": "0.2.4",
     "ngx-color-picker": "10.1.0",
     "ngx-cookie-service": "10.1.1",
+    "path": "0.12.7",
     "perfect-scrollbar": "1.5.0",
     "prismjs": "1.22.0",
     "rxjs": "6.6.3",
     "tslib": "2.0.3",
     "web-animations-js": "2.3.2",
-    "zone.js": "0.10.3",
-    "@ngx-formly/core": "^5.0.0",
-    "@ngx-formly/material": "^5.0.0"
+    "zone.js": "0.10.3"
   },
   "devDependencies": {
     "@angular/cli": "11.0.0",
