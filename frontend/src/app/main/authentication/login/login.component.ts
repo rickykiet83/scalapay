@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
     }
 
     onSubmit() {
-        if (this.loginForm.get('email').value === 'est@scalapay.it' &&
+        if (this.loginForm.get('email').value === 'test@scalapay.it' &&
             this.loginForm.get('password').value === '12345678')
             this.route.navigateByUrl('/');
     } 
