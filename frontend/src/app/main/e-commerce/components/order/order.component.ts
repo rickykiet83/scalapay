@@ -57,7 +57,7 @@ export class OrderComponent extends BaseComponent implements OnInit {
         price: {
           amount: '10.00',
           currency: 'EUR'
-        },
+        }
       },
       {
         name: 'Jeans',
@@ -70,7 +70,7 @@ export class OrderComponent extends BaseComponent implements OnInit {
         price: {
           amount: '20.00',
           currency: 'EUR'
-        },
+        }
       }
     ],
     discounts: [
@@ -101,12 +101,13 @@ export class OrderComponent extends BaseComponent implements OnInit {
   consumerFields: FormlyFieldConfig[] = [];
   shippingFields: FormlyFieldConfig[] = [];
   billingFields: FormlyFieldConfig[] = [];
+  isLoading = false;
 
   constructor(
     fuseTranslationLoaderService: FuseTranslationLoaderService,
     notifcationService: NotificationService,
     private orderService: OrderService,
-    private routingService: RoutingServiceBase,
+    private routingService: RoutingServiceBase
   ) {
     super(fuseTranslationLoaderService, notifcationService);
     // Set the defaults
@@ -246,7 +247,7 @@ export class OrderComponent extends BaseComponent implements OnInit {
               required: true,
               maxLength: 2
             }
-          },
+          }
         ]
       }
     ];
@@ -289,7 +290,7 @@ export class OrderComponent extends BaseComponent implements OnInit {
             templateOptions: {
               label: 'Street (required)',
               required: true,
-              maxLength: 250,
+              maxLength: 250
             }
           },
           {
@@ -322,7 +323,7 @@ export class OrderComponent extends BaseComponent implements OnInit {
               required: true,
               maxLength: 2
             }
-          },
+          }
         ]
       }
     ];
@@ -338,16 +339,21 @@ export class OrderComponent extends BaseComponent implements OnInit {
   }
 
   get disabledSave(): boolean {
-      return this.form.invalid 
-      || this.form.pristine
-      ;
+    return this.form.invalid || this.form.pristine || this.isLoading;
   }
 
   onSubmit() {
-      this.orderService.createOrder(this.order).subscribe(response => {
-          if (response.checkoutUrl) {
-            this.routingService.toExternalUrl(response.checkoutUrl);
-          }
-      })
+    if (this.isLoading) return;
+
+    this.isLoading = true;
+    this.orderService.createOrder(this.order).subscribe(
+      (response) => {
+        if (response.checkoutUrl) {
+          this.routingService.toExternalUrl(response.checkoutUrl);
+        }
+      },
+      (err) => this.notifcationService.error(err),
+      () => (this.isLoading = false)
+    );
   }
 }
