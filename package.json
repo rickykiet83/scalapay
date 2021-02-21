@@ -9,7 +9,8 @@
     "start:front": "npm run install-dependencies-front && cd frontend && npm start",
     "build:front": "cd frontend && npm run build",
     "test:back": "cd backend && npm run test",
-    "start:back": "npm run install-dependencies-back && cd backend && npm run server:dev"
+    "start:back": "npm run install-dependencies-back && cd backend && npm run server:dev",
+    "heroku:push": "git subtree push --prefix backend heroku master"
   },
   "repository": {
     "type": "git",
