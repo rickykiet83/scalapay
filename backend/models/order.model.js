@@ -6,7 +6,7 @@ function validateOrder(order) {
     const amount = Joi.number().required().positive();
     const currency = Joi.string().required().max(5);
     const countryCode = Joi.string().allow(null, '').max(5);
-    const phoneNumber = Joi.string().allow(null, '').max(15);
+    const phoneNumber = Joi.string().allow(null, '').max(14);
 
     // item object property
     const item = Joi.object().keys({
@@ -39,7 +39,7 @@ function validateOrder(order) {
             currency
         },
         consumer: {
-            phoneNumber: Joi.string().allow(null, '').max(15),
+            phoneNumber: phoneNumber,
             givenNames: Joi.string().required().min(3).max(50),
             surname: Joi.string().required().min(3).max(250),
             email: Joi.string().email().required(),
@@ -62,7 +62,7 @@ function validateOrder(order) {
             suburb: Joi.string().required().max(50),
             postcode: Joi.string().required().max(5),
             countryCode: Joi.string().required().max(5),
-            phoneNumber: Joi.string().required().max(15)
+            phoneNumber: Joi.string().required().max(14)
         },
         merchantReference: Joi.string().required().max(50),
         items: Joi.array().items(item),
