@@ -53,3 +53,6 @@ Write an interface that:
 
 - `npm run start:front` for angular web application
 - The app should run on `http://localhost:4200/`
+
+-- Test Backend API
+- `npm run test:back`
