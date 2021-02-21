@@ -48,7 +48,6 @@ export class ProductsComponent extends BaseComponent implements OnInit {
     fromEvent(this.filter.nativeElement, 'keyup')
       .pipe(takeUntil(this._unsubscribeAll), debounceTime(150), distinctUntilChanged())
       .subscribe((value) => {
-        console.log(this.filter.nativeElement.value);
         if (!this.dataSource) {
           return;
         }
