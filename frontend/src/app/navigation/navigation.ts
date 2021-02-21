@@ -29,6 +29,13 @@ export const navigation: FuseNavigation[] = [
                         url       : '/e-commerce/orders',
                         exactMatch: true
                     },
+                    {
+                        id        : 'products',
+                        title     : 'Products',
+                        type      : 'item',
+                        url       : '/e-commerce/products',
+                        exactMatch: true
+                    },
                 ]
             },
         ]

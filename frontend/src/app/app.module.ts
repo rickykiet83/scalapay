@@ -19,6 +19,8 @@ import { ConfigurationModule } from './main/configuration/configuration.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { FakeDbService } from './fake-db/fake-db.service';
 
 @NgModule({
     declarations: [
@@ -32,6 +34,10 @@ import { FormlyMaterialModule } from '@ngx-formly/material';
         AppRoutingModule,
 
         TranslateModule.forRoot(),
+        InMemoryWebApiModule.forRoot(FakeDbService, {
+            delay             : 0,
+            passThruUnknownUrl: true
+        }),
 
         // Material moment date module
         MatMomentDateModule,

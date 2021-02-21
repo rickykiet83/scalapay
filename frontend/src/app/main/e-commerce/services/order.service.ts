@@ -1,3 +1,4 @@
+import { ECommerceModule } from './../e-commerce.module';
 import { Observable } from 'rxjs/internal/Observable';
 import { Order, OrderModel } from './../../../shared/models/order.model';
 import { Injectable } from '@angular/core';
