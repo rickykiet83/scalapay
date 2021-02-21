@@ -18,8 +18,6 @@ Write an interface that:
 
 ## Tech stack
 
-![Tech logos][stack]
-
 - [Angular CLI][cli]
 - [NodeJS][nodejs]
 - [Express][expressjs]
