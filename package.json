@@ -9,27 +9,23 @@
     "start:front": "npm run install-dependencies-front && cd frontend && npm start",
     "build:front": "cd frontend && npm run build",
     "test:back": "cd backend && npm run test",
-    "start:back": "npm run install-dependencies-back && cd backend && npm run server:dev",
-    "heroku-postbuild": "npm run install-dependencies-back && npm run build:back"
+    "start:back": "npm run install-dependencies-back && cd backend && npm run server:dev"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/trungk18/jira-clone-angular.git"
+    "url": "git+https://github.com/rickykiet83/scalapay"
   },
   "keywords": [
     "angular",
-    "akita",
-    "jira-clone",
-    "tailwind",
+    "nodejs",
+    "express",
+    "angular material",
     "typescript"
   ],
-  "author": "Trung Vo",
+  "author": "Kiet Pham",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/trungk18/jira-clone-angular/issues"
-  },
-  "homepage": "https://github.com/trungk18/jira-clone-angular#readme",
+  "homepage": "https://github.com/rickykiet83/scalapay#readme",
   "engines": {
-    "node": "12.x"
+    "node": "14.x"
   }
 }
