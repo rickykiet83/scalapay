@@ -6,7 +6,6 @@ module.exports = function (req, res, next) {
         if (!token) token = config.get('token');
 
         if (!token) return res.status(401).send('Access denied. No token provided');
-        
         req.token = token;
         next();
     } catch (error) {
