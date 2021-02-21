@@ -53,7 +53,7 @@ export class OrderComponent extends BaseComponent implements OnInit {
         brand: 'TopChoice',
         gtin: '123458791330',
         sku: '12341234',
-        quantity: 1,
+        quantity: 3,
         price: {
           amount: '10.00',
           currency: 'EUR'
