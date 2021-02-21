@@ -1,0 +1,35 @@
+{
+  "name": "scalapay-app",
+  "version": "1.0.0",
+  "description": "Scalapay Coding Assignment",
+  "scripts": {
+    "install-dependencies": "npm run install-dependencies-front && npm run install-dependencies-back",
+    "install-dependencies-front": "cd frontend && npm i",
+    "install-dependencies-back": "cd backend && npm i",
+    "start:front": "npm run install-dependencies-front && cd frontend && npm start",
+    "build:front": "cd frontend && npm run build",
+    "test:back": "cd backend && npm run test",
+    "start:back": "npm run install-dependencies-back && cd backend && npm run server:dev",
+    "heroku-postbuild": "npm run install-dependencies-back && npm run build:back"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trungk18/jira-clone-angular.git"
+  },
+  "keywords": [
+    "angular",
+    "akita",
+    "jira-clone",
+    "tailwind",
+    "typescript"
+  ],
+  "author": "Trung Vo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/trungk18/jira-clone-angular/issues"
+  },
+  "homepage": "https://github.com/trungk18/jira-clone-angular#readme",
+  "engines": {
+    "node": "12.x"
+  }
+}
